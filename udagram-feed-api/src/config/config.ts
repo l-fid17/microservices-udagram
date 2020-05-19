@@ -9,6 +9,6 @@ export const config = {
   aws_media_bucket: process.env.AWS_BUCKET,
   url: process.env.URL,
   jwt: {
-    secret: process.env.JWT_SECRET,
+    secret: process.env.JWT_TOKEN,
   },
 };
