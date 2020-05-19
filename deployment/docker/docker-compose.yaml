@@ -1,0 +1,42 @@
+version: "3"
+services:
+  reverseproxy:
+    image: devf1d/reverseproxy
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - backend-feed
+      - backend-user
+  backend-user:
+    image: devf1d/udagram-user-api
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRES_USERNAME: $POSTGRES_USERNAME
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DATABASE: $POSTGRES_DATABASE
+      POSTGRES_HOST: $POSTGRES_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_MEDIA_BUCKET: $AWS_MEDIA_BUCKET
+      JWT_TOKEN: $JWT_TOKEN
+      URL: "http://localhost:8100"
+  backend-feed:
+    image: devf1d/udagram-feed-api
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRES_USERNAME: $POSTGRES_USERNAME
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $POSTGRES_DB
+      POSTGRES_HOST: $POSTGRES_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_BUCKET: $AWS_BUCKET
+      JWT_TOKEN: $JWT_TOKEN
+      URL: "http://localhost:8100"
+  frontend:
+    image: devf1d/udagram-frontend:local
+    ports:
+      - "8100:80"
