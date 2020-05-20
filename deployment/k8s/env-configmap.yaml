@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 data:
-  AWS_BUCKET: project4-655237641501-dev
-  AWS_PROFILE: lappy-dev
-  AWS_REGION: eu-west-2
-  JWT_TOKEN: supermastersecretjwttoken
-  POSTGRES_DB: dev
-  POSTGRES_HOST: dev-655237641501-udagram-dev.cnk3j7hupisd.eu-west-2.rds.amazonaws.com
+  AWS_BUCKET: __REDACTED__
+  AWS_PROFILE: __REDACTED__
+  AWS_REGION: __REDACTED__
+  JWT_TOKEN: __REDACTED__
+  POSTGRES_DB: __REDACTED__
+  POSTGRES_HOST: __REDACTED__
   URL: http://localhost:8100
 metadata:
   name: env-config
